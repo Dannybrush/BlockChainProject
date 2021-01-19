@@ -19,7 +19,7 @@ namespace BlockchainAssignment.Wallet
         public Wallet(out String privateKey)
         {
             privateKey = String.Empty;
-            +
+            
             byte[] pubKey;
             byte[] privKey;
 
@@ -36,9 +36,7 @@ namespace BlockchainAssignment.Wallet
             privKey = KeyBlob.Skip(72).Take(KeyBlob.Length).ToArray();
             publicID = Convert.ToBase64String(pubKey);
             privateKey = Convert.ToBase64String(privKey); 
-
-
-        }
+            }
 
         public static bool ValidatePrivateKey(String privateKey, String publicID)
         {
