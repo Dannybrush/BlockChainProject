@@ -8,3 +8,13 @@ E:\Random\Projects\BlockchainAssignment\BlockchainAssignment\obj\Debug\Blockchai
 E:\Random\Projects\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.csproj.CoreCompileInputs.cache
 E:\Random\Projects\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.exe
 E:\Random\Projects\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.pdb
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\bin\Debug\BlockchainAssignment.exe.config
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\bin\Debug\BlockchainAssignment.exe
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\bin\Debug\BlockchainAssignment.pdb
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.csprojAssemblyReference.cache
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.BlockchainApp.resources
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.Properties.Resources.resources
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.csproj.GenerateResource.cache
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.csproj.CoreCompileInputs.cache
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.exe
+D:\Users\Danny\FROM C\Desktop\Github\BlockChainProject\BlockChain_Orig_Source\BlockchainAssignment\obj\Debug\BlockchainAssignment.pdb

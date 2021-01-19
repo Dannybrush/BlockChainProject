@@ -21,5 +21,10 @@ namespace BlockchainAssignment
         {
 
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = textBox1.Text;
+        }
     }
 }
