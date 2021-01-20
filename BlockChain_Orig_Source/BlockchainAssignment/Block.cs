@@ -9,17 +9,21 @@ namespace BlockchainAssignment
 {
     class Block
     {
-        private DateTime timeStamp;
-        private int index;
-        private string hash;
-        private string prevHash;
+        //private DateTime timeStamp;
+        //private int index;
+        //private string hash;
+        //private string prevHash;
+
+        public DateTime timeStamp{ get; set; }
+        public int index { get; set; }
+        public string hash { get; set; }
+        public string prevHash { get; set; }
 
         // Constructor which is passed the previous block
         public Block(Block lastBlock) {
             this.timeStamp = DateTime.Now;
-            this.index = lastBlock.GetIndex();
-            this.hash = lastBlock.GetHash();                    // do some research into which is better 
-           // this.hash = lastBlock.hash;
+            this.index = lastBlock.index;
+            this.prevHash = lastBlock.hash;                            
         }
 
         // Constructor which is passed the index & hash of previous block
@@ -38,10 +42,11 @@ namespace BlockchainAssignment
             this.hash = this.Create256Hash();                              //    Create hash from index, prevhash and time
         }
 
-
+/* OLD GETTER / SETTERS 
         public DateTime GetTimeStamp() { return this.timeStamp; }
         public int GetIndex() { return this.index; }
         public string GetHash() { return this.hash; }
+        */
 
         public string ReturnString() {
             return (" The Block with Index: " + this.index + 
