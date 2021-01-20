@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.printButton = new System.Windows.Forms.Button();
+            this.indexInput = new System.Windows.Forms.TextBox();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -43,22 +44,33 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
-            // button1
+            // printButton
             // 
-            this.button1.Location = new System.Drawing.Point(13, 333);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.printButton.Location = new System.Drawing.Point(13, 333);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(75, 23);
+            this.printButton.TabIndex = 1;
+            this.printButton.Text = "Print";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
-            // textBox1
+            // indexInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 333);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 20);
-            this.textBox1.TabIndex = 2;
+            this.indexInput.Location = new System.Drawing.Point(95, 333);
+            this.indexInput.Name = "indexInput";
+            this.indexInput.Size = new System.Drawing.Size(162, 20);
+            this.indexInput.TabIndex = 2;
+            this.indexInput.TextChanged += new System.EventHandler(this.IndexInput_TextChanged);
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Location = new System.Drawing.Point(13, 363);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(482, 13);
+            this.infoLabel.TabIndex = 3;
+            this.infoLabel.Text = "Type the index of the block which you wish to reveal information about, then pres" +
+    "s the \"Print\" button.";
             // 
             // BlockchainApp
             // 
@@ -66,8 +78,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(681, 481);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.infoLabel);
+            this.Controls.Add(this.indexInput);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.richTextBox1);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "BlockchainApp";
@@ -81,8 +94,9 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button printButton;
+        private System.Windows.Forms.TextBox indexInput;
+        private System.Windows.Forms.Label infoLabel;
     }
 }
 
