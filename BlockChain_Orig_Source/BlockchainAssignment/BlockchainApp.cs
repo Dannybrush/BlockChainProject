@@ -25,7 +25,7 @@ namespace BlockchainAssignment
         {
 
         }
-
+               // Produces error when attempting to print nothing
         private void printBtn_Click(object sender, EventArgs e)
         {
             // richTextBox1.Text = indexInput.Text;         // first gen

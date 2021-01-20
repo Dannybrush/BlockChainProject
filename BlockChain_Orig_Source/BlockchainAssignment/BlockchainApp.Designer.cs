@@ -90,7 +90,7 @@
             // 
             // valKeysBtn
             // 
-            this.valKeysBtn.Location = new System.Drawing.Point(516, 446);
+            this.valKeysBtn.Location = new System.Drawing.Point(263, 379);
             this.valKeysBtn.Name = "valKeysBtn";
             this.valKeysBtn.Size = new System.Drawing.Size(153, 23);
             this.valKeysBtn.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             this.pubKeyTBox.Location = new System.Drawing.Point(12, 426);
             this.pubKeyTBox.Name = "pubKeyTBox";
-            this.pubKeyTBox.Size = new System.Drawing.Size(498, 20);
+            this.pubKeyTBox.Size = new System.Drawing.Size(657, 20);
             this.pubKeyTBox.TabIndex = 6;
             // 
             // label1
@@ -127,7 +127,7 @@
             // 
             this.privKeyTBox.Location = new System.Drawing.Point(12, 467);
             this.privKeyTBox.Name = "privKeyTBox";
-            this.privKeyTBox.Size = new System.Drawing.Size(498, 20);
+            this.privKeyTBox.Size = new System.Drawing.Size(657, 20);
             this.privKeyTBox.TabIndex = 9;
             // 
             // BlockchainApp
@@ -135,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(681, 530);
+            this.ClientSize = new System.Drawing.Size(681, 633);
             this.Controls.Add(this.privKeyTBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
