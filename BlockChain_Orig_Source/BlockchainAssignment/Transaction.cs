@@ -58,7 +58,7 @@ namespace BlockchainAssignment
 
         public string ReturnString()
         {
-            return ("Requested by 27016005 " +
+            return ("Requested by:  27016005 " +
                     "\n Transaction Hash: " + this.Hash +
                     "\n Digital Signature: " + this.Signature +
                     "\n Timestamp: " + this.TimeStamp +

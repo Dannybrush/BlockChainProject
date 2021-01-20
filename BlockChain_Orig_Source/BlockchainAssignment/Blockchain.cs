@@ -16,14 +16,25 @@ namespace BlockchainAssignment
             Block genesis = new Block();
             Blocks.Add(genesis);
             // Blocks.Add(new Block());             // Another way of writing the same thing 
- 
+
         }
-        public string BlockString(int index) {
+        public string BlockString(int index)
+        {
             return (Blocks.ElementAt(index).ReturnString());
         }
         public void add2TPool(Transaction Trans)
         {
             TransactionPool.Add(Trans);
+        }
+        public void add2Block(Block blck)
+        {
+            Blocks.Add(blck);
+        }
+
+
+        public Block getLastBlock()
+        {
+            return Blocks[Blocks.Count - 1];
         }
     }
 }

@@ -45,6 +45,7 @@
             this.amountTBox = new System.Windows.Forms.TextBox();
             this.feeTBox = new System.Windows.Forms.TextBox();
             this.recieverKeyTBox = new System.Windows.Forms.TextBox();
+            this.blockGenBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -195,12 +196,23 @@
             this.recieverKeyTBox.Size = new System.Drawing.Size(571, 20);
             this.recieverKeyTBox.TabIndex = 16;
             // 
+            // blockGenBtn
+            // 
+            this.blockGenBtn.Location = new System.Drawing.Point(532, 333);
+            this.blockGenBtn.Name = "blockGenBtn";
+            this.blockGenBtn.Size = new System.Drawing.Size(128, 87);
+            this.blockGenBtn.TabIndex = 17;
+            this.blockGenBtn.Text = "Generate New Block";
+            this.blockGenBtn.UseVisualStyleBackColor = true;
+            this.blockGenBtn.Click += new System.EventHandler(this.BlockGenBtn_Click);
+            // 
             // BlockchainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(681, 633);
+            this.Controls.Add(this.blockGenBtn);
             this.Controls.Add(this.recieverKeyTBox);
             this.Controls.Add(this.feeTBox);
             this.Controls.Add(this.amountTBox);
@@ -246,6 +258,7 @@
         private System.Windows.Forms.TextBox amountTBox;
         private System.Windows.Forms.TextBox feeTBox;
         private System.Windows.Forms.TextBox recieverKeyTBox;
+        private System.Windows.Forms.Button blockGenBtn;
     }
 }
 

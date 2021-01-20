@@ -64,5 +64,10 @@ namespace BlockchainAssignment
             blockchain.add2TPool(transaction);
             outputToRichTextBox1(transaction.ReturnString());
         }
+
+        private void BlockGenBtn_Click(object sender, EventArgs e)
+        {
+            Block block = new Block(blockchain.getLastBlock());
+        }
     }
 }
