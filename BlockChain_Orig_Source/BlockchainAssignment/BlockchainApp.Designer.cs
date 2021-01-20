@@ -30,14 +30,21 @@
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.printBtn = new System.Windows.Forms.Button();
-            this.indexInput = new System.Windows.Forms.TextBox();
-            this.infoLabel = new System.Windows.Forms.Label();
+            this.indexTBox = new System.Windows.Forms.TextBox();
+            this.infoLbl = new System.Windows.Forms.Label();
             this.genWalletBtn = new System.Windows.Forms.Button();
             this.valKeysBtn = new System.Windows.Forms.Button();
             this.pubKeyTBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.pubKeyLbl = new System.Windows.Forms.Label();
+            this.privKeyLbl = new System.Windows.Forms.Label();
             this.privKeyTBox = new System.Windows.Forms.TextBox();
+            this.createTransBtn = new System.Windows.Forms.Button();
+            this.amountLbl = new System.Windows.Forms.Label();
+            this.feeLbl = new System.Windows.Forms.Label();
+            this.RKeyLbl = new System.Windows.Forms.Label();
+            this.amountTBox = new System.Windows.Forms.TextBox();
+            this.feeTBox = new System.Windows.Forms.TextBox();
+            this.recieverKeyTBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -60,22 +67,22 @@
             this.printBtn.UseVisualStyleBackColor = true;
             this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
             // 
-            // indexInput
+            // indexTBox
             // 
-            this.indexInput.Location = new System.Drawing.Point(95, 333);
-            this.indexInput.Name = "indexInput";
-            this.indexInput.Size = new System.Drawing.Size(162, 20);
-            this.indexInput.TabIndex = 2;
-            this.indexInput.TextChanged += new System.EventHandler(this.IndexInput_TextChanged);
+            this.indexTBox.Location = new System.Drawing.Point(95, 333);
+            this.indexTBox.Name = "indexTBox";
+            this.indexTBox.Size = new System.Drawing.Size(162, 20);
+            this.indexTBox.TabIndex = 2;
+            this.indexTBox.TextChanged += new System.EventHandler(this.IndexInput_TextChanged);
             // 
-            // infoLabel
+            // infoLbl
             // 
-            this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(13, 363);
-            this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(482, 13);
-            this.infoLabel.TabIndex = 3;
-            this.infoLabel.Text = "Type the index of the block which you wish to reveal information about, then pres" +
+            this.infoLbl.AutoSize = true;
+            this.infoLbl.Location = new System.Drawing.Point(13, 363);
+            this.infoLbl.Name = "infoLbl";
+            this.infoLbl.Size = new System.Drawing.Size(482, 13);
+            this.infoLbl.TabIndex = 3;
+            this.infoLbl.Text = "Type the index of the block which you wish to reveal information about, then pres" +
     "s the \"Print\" button.";
             // 
             // genWalletBtn
@@ -90,7 +97,7 @@
             // 
             // valKeysBtn
             // 
-            this.valKeysBtn.Location = new System.Drawing.Point(263, 379);
+            this.valKeysBtn.Location = new System.Drawing.Point(316, 464);
             this.valKeysBtn.Name = "valKeysBtn";
             this.valKeysBtn.Size = new System.Drawing.Size(153, 23);
             this.valKeysBtn.TabIndex = 5;
@@ -105,30 +112,88 @@
             this.pubKeyTBox.Size = new System.Drawing.Size(657, 20);
             this.pubKeyTBox.TabIndex = 6;
             // 
-            // label1
+            // pubKeyLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 410);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Public Key";
+            this.pubKeyLbl.AutoSize = true;
+            this.pubKeyLbl.Location = new System.Drawing.Point(13, 410);
+            this.pubKeyLbl.Name = "pubKeyLbl";
+            this.pubKeyLbl.Size = new System.Drawing.Size(57, 13);
+            this.pubKeyLbl.TabIndex = 7;
+            this.pubKeyLbl.Text = "Public Key";
             // 
-            // label2
+            // privKeyLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 451);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Private Key";
+            this.privKeyLbl.AutoSize = true;
+            this.privKeyLbl.Location = new System.Drawing.Point(10, 451);
+            this.privKeyLbl.Name = "privKeyLbl";
+            this.privKeyLbl.Size = new System.Drawing.Size(61, 13);
+            this.privKeyLbl.TabIndex = 8;
+            this.privKeyLbl.Text = "Private Key";
             // 
             // privKeyTBox
             // 
             this.privKeyTBox.Location = new System.Drawing.Point(12, 467);
             this.privKeyTBox.Name = "privKeyTBox";
-            this.privKeyTBox.Size = new System.Drawing.Size(657, 20);
+            this.privKeyTBox.Size = new System.Drawing.Size(298, 20);
             this.privKeyTBox.TabIndex = 9;
+            // 
+            // createTransBtn
+            // 
+            this.createTransBtn.Location = new System.Drawing.Point(160, 496);
+            this.createTransBtn.Name = "createTransBtn";
+            this.createTransBtn.Size = new System.Drawing.Size(73, 49);
+            this.createTransBtn.TabIndex = 10;
+            this.createTransBtn.Text = "Create Transaction";
+            this.createTransBtn.UseVisualStyleBackColor = true;
+            this.createTransBtn.Click += new System.EventHandler(this.CreateTransBtn_Click);
+            // 
+            // amountLbl
+            // 
+            this.amountLbl.AutoSize = true;
+            this.amountLbl.Location = new System.Drawing.Point(13, 499);
+            this.amountLbl.Name = "amountLbl";
+            this.amountLbl.Size = new System.Drawing.Size(43, 13);
+            this.amountLbl.TabIndex = 11;
+            this.amountLbl.Text = "Amount";
+            // 
+            // feeLbl
+            // 
+            this.feeLbl.AutoSize = true;
+            this.feeLbl.Location = new System.Drawing.Point(13, 523);
+            this.feeLbl.Name = "feeLbl";
+            this.feeLbl.Size = new System.Drawing.Size(25, 13);
+            this.feeLbl.TabIndex = 12;
+            this.feeLbl.Text = "Fee";
+            // 
+            // RKeyLbl
+            // 
+            this.RKeyLbl.AutoSize = true;
+            this.RKeyLbl.Location = new System.Drawing.Point(13, 557);
+            this.RKeyLbl.Name = "RKeyLbl";
+            this.RKeyLbl.Size = new System.Drawing.Size(71, 13);
+            this.RKeyLbl.TabIndex = 13;
+            this.RKeyLbl.Text = "Receiver Key";
+            // 
+            // amountTBox
+            // 
+            this.amountTBox.Location = new System.Drawing.Point(54, 499);
+            this.amountTBox.Name = "amountTBox";
+            this.amountTBox.Size = new System.Drawing.Size(100, 20);
+            this.amountTBox.TabIndex = 14;
+            // 
+            // feeTBox
+            // 
+            this.feeTBox.Location = new System.Drawing.Point(54, 523);
+            this.feeTBox.Name = "feeTBox";
+            this.feeTBox.Size = new System.Drawing.Size(100, 20);
+            this.feeTBox.TabIndex = 15;
+            // 
+            // recieverKeyTBox
+            // 
+            this.recieverKeyTBox.Location = new System.Drawing.Point(13, 573);
+            this.recieverKeyTBox.Name = "recieverKeyTBox";
+            this.recieverKeyTBox.Size = new System.Drawing.Size(571, 20);
+            this.recieverKeyTBox.TabIndex = 16;
             // 
             // BlockchainApp
             // 
@@ -136,14 +201,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(681, 633);
+            this.Controls.Add(this.recieverKeyTBox);
+            this.Controls.Add(this.feeTBox);
+            this.Controls.Add(this.amountTBox);
+            this.Controls.Add(this.RKeyLbl);
+            this.Controls.Add(this.feeLbl);
+            this.Controls.Add(this.amountLbl);
+            this.Controls.Add(this.createTransBtn);
             this.Controls.Add(this.privKeyTBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.privKeyLbl);
+            this.Controls.Add(this.pubKeyLbl);
             this.Controls.Add(this.pubKeyTBox);
             this.Controls.Add(this.valKeysBtn);
             this.Controls.Add(this.genWalletBtn);
-            this.Controls.Add(this.infoLabel);
-            this.Controls.Add(this.indexInput);
+            this.Controls.Add(this.infoLbl);
+            this.Controls.Add(this.indexTBox);
             this.Controls.Add(this.printBtn);
             this.Controls.Add(this.richTextBox1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -159,14 +231,21 @@
 
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button printBtn;
-        private System.Windows.Forms.TextBox indexInput;
-        private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.TextBox indexTBox;
+        private System.Windows.Forms.Label infoLbl;
         private System.Windows.Forms.Button genWalletBtn;
         private System.Windows.Forms.Button valKeysBtn;
         private System.Windows.Forms.TextBox pubKeyTBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label pubKeyLbl;
+        private System.Windows.Forms.Label privKeyLbl;
         private System.Windows.Forms.TextBox privKeyTBox;
+        private System.Windows.Forms.Button createTransBtn;
+        private System.Windows.Forms.Label amountLbl;
+        private System.Windows.Forms.Label feeLbl;
+        private System.Windows.Forms.Label RKeyLbl;
+        private System.Windows.Forms.TextBox amountTBox;
+        private System.Windows.Forms.TextBox feeTBox;
+        private System.Windows.Forms.TextBox recieverKeyTBox;
     }
 }
 

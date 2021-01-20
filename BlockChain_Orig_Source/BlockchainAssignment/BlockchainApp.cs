@@ -30,7 +30,7 @@ namespace BlockchainAssignment
         {
             // richTextBox1.Text = indexInput.Text;         // first gen
             // outputToRichTextBox1(indexInput.Text);       // second gen
-            outputToRichTextBox1(blockchain.BlockString(Convert.ToInt32(indexInput.Text)));
+            outputToRichTextBox1(blockchain.BlockString(Convert.ToInt32(indexTBox.Text)));
         }
 
         private void outputToRichTextBox1(string toBePrinted) { richTextBox1.Text = toBePrinted; }
@@ -56,6 +56,13 @@ namespace BlockchainAssignment
             Color color; 
            color =  Wallet.Wallet.ValidatePrivateKey(privKeyTBox.Text, pubKeyTBox.Text) ? Color.Green : Color.Red;
             valKeysBtn.BackColor = color;
+        }
+
+        private void CreateTransBtn_Click(object sender, EventArgs e)
+        {
+            Transaction transaction = new Transaction(pubKeyTBox.Text, privKeyTBox.Text, recieverKeyTBox.Text, Convert.ToSingle(amountTBox.Text), Convert.ToSingle(feeTBox.Text));
+            blockchain.add2TPool(transaction);
+            outputToRichTextBox1(transaction.ReturnString());
         }
     }
 }

@@ -9,6 +9,7 @@ namespace BlockchainAssignment
     class Blockchain
     {
         List<Block> Blocks = new List<Block>();
+        List<Transaction> TransactionPool = new List<Transaction>();
 
         public Blockchain()
         {
@@ -19,6 +20,10 @@ namespace BlockchainAssignment
         }
         public string BlockString(int index) {
             return (Blocks.ElementAt(index).ReturnString());
+        }
+        public void add2TPool(Transaction Trans)
+        {
+            TransactionPool.Add(Trans);
         }
     }
 }

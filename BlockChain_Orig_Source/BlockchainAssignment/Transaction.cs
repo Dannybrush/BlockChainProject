@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlockchainAssignment
 {
-    class Transactions
+    class Transaction
     {
         public string Hash{get; set;} // The Hash
         public string Signature{get; set;} // Hash signed with private key of sender
@@ -17,11 +17,11 @@ namespace BlockchainAssignment
         public float Amount{get; set;} // amount sent  // decimal Amount = 2.1M (suffix M needed )
         public float Fee{get; set;} // the fee added to transaction 
 
-        Transactions()
+        public Transaction()
         {
 
         }
-        Transactions(string senderPublic, string senderPrivate, string recipientPublic, float amount, float fee)
+        public Transaction(string senderPublic, string senderPrivate, string recipientPublic, float amount, float fee)
         {
             this.TimeStamp = DateTime.Now;
 
@@ -29,7 +29,7 @@ namespace BlockchainAssignment
 
             this.RecipientAddress = recipientPublic;
 
-            this.Amount = Amount;
+            this.Amount = amount;
 
             this.Fee = fee;
 
@@ -55,5 +55,20 @@ namespace BlockchainAssignment
             return hash;
 
         }
+
+        public string ReturnString()
+        {
+            return ("Requested by 27016005 " +
+                    "\n Transaction Hash: " + this.Hash +
+                    "\n Digital Signature: " + this.Signature +
+                    "\n Timestamp: " + this.TimeStamp +
+                    "\n Transferred: " + this.Amount + 
+                    "\n Fees: "+this.Fee +
+                    "\n Sender Address: " + this.SenderAddress +
+                    "\n Receiver Address: "+ this.RecipientAddress +
+                    ". "
+                    );
+        }
+
     }
 }
