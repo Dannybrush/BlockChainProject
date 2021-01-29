@@ -68,6 +68,17 @@ namespace BlockchainAssignment
         private void BlockGenBtn_Click(object sender, EventArgs e)
         {
             Block block = new Block(blockchain.getLastBlock());
+            blockchain.add2Block(block);
+        }
+
+        private void PrintAllBtn_Click(object sender, EventArgs e)
+        {
+            string printall = "";
+            for (int i = 0; i < blockchain.maxBlock; i++)
+            {
+                printall += (blockchain.BlockString(Convert.ToInt32(i)) + "\n \n");
+            }
+            outputToRichTextBox1(printall);
         }
     }
 }

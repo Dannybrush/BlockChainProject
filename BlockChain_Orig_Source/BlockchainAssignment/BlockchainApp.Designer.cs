@@ -46,6 +46,7 @@
             this.feeTBox = new System.Windows.Forms.TextBox();
             this.recieverKeyTBox = new System.Windows.Forms.TextBox();
             this.blockGenBtn = new System.Windows.Forms.Button();
+            this.printAllBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -206,12 +207,23 @@
             this.blockGenBtn.UseVisualStyleBackColor = true;
             this.blockGenBtn.Click += new System.EventHandler(this.BlockGenBtn_Click);
             // 
+            // printAllBtn
+            // 
+            this.printAllBtn.Location = new System.Drawing.Point(264, 333);
+            this.printAllBtn.Name = "printAllBtn";
+            this.printAllBtn.Size = new System.Drawing.Size(75, 23);
+            this.printAllBtn.TabIndex = 18;
+            this.printAllBtn.Text = "Print All";
+            this.printAllBtn.UseVisualStyleBackColor = true;
+            this.printAllBtn.Click += new System.EventHandler(this.PrintAllBtn_Click);
+            // 
             // BlockchainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(681, 633);
+            this.Controls.Add(this.printAllBtn);
             this.Controls.Add(this.blockGenBtn);
             this.Controls.Add(this.recieverKeyTBox);
             this.Controls.Add(this.feeTBox);
@@ -259,6 +271,7 @@
         private System.Windows.Forms.TextBox feeTBox;
         private System.Windows.Forms.TextBox recieverKeyTBox;
         private System.Windows.Forms.Button blockGenBtn;
+        private System.Windows.Forms.Button printAllBtn;
     }
 }
 

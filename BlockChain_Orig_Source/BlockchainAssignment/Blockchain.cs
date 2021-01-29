@@ -8,6 +8,7 @@ namespace BlockchainAssignment
 {
     class Blockchain
     {
+        public int maxBlock { get => this.Blocks.Count;}
         List<Block> Blocks = new List<Block>();
         List<Transaction> TransactionPool = new List<Transaction>();
 

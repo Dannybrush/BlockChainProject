@@ -22,8 +22,9 @@ namespace BlockchainAssignment
         // Constructor which is passed the previous block
         public Block(Block lastBlock) {
             this.timeStamp = DateTime.Now;
-            this.index = lastBlock.index;
-            this.prevHash = lastBlock.hash;                            
+            this.index = lastBlock.index + 1 ;
+            this.prevHash = lastBlock.hash;
+            this.hash = this.Create256Hash();                              //    Create hash from index, prevhash and time
         }
 
         // Constructor which is passed the index & hash of previous block
@@ -31,6 +32,7 @@ namespace BlockchainAssignment
             this.timeStamp = DateTime.Now;                      // new time
             this.index = lastIndex + 1;                         // increment on last block
             this.prevHash = lastHash;                               //needs fixing 
+            this.hash = this.Create256Hash();                              //    Create hash from index, prevhash and time
         }
 
         // Constructor which is not passed anything
