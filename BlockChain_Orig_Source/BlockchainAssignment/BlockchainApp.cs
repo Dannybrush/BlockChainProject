@@ -70,7 +70,11 @@ namespace BlockchainAssignment
             Block block = new Block(blockchain.getLastBlock());
             blockchain.add2Block(block);
         }
-
+        /*private void BlockGenwithTransBtn_Click(object sender, EventArgs e)
+        {
+            Block block = new Block(blockchain.getLastBlock());
+            blockchain.add2Block(block);
+        }*/
         private void PrintAllBtn_Click(object sender, EventArgs e)
         {
             string printall = "";
@@ -79,6 +83,21 @@ namespace BlockchainAssignment
                 printall += (blockchain.BlockString(Convert.ToInt32(i)) + "\n \n");
             }
             outputToRichTextBox1(printall);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Block block = new Block(blockchain.getLastBlock(), blockchain.retTPool());
+            blockchain.purgeTPool(block.transactionList);
+            blockchain.add2Block(block);
+        }
+
+        private void ReadPendTrandBtn_Click(object sender, EventArgs e)
+        {string s = "";
+            foreach (Transaction T in blockchain.retTPool()) {
+               s+= T +": \n "+T.ReturnString() + "\n \n ";
+            }
+            outputToRichTextBox1(s);
         }
     }
 }

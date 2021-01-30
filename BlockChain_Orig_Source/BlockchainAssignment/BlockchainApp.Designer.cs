@@ -47,6 +47,8 @@
             this.recieverKeyTBox = new System.Windows.Forms.TextBox();
             this.blockGenBtn = new System.Windows.Forms.Button();
             this.printAllBtn = new System.Windows.Forms.Button();
+            this.readPendTrandBtn = new System.Windows.Forms.Button();
+            this.GenwTransBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -217,12 +219,34 @@
             this.printAllBtn.UseVisualStyleBackColor = true;
             this.printAllBtn.Click += new System.EventHandler(this.PrintAllBtn_Click);
             // 
+            // readPendTrandBtn
+            // 
+            this.readPendTrandBtn.Location = new System.Drawing.Point(239, 497);
+            this.readPendTrandBtn.Name = "readPendTrandBtn";
+            this.readPendTrandBtn.Size = new System.Drawing.Size(100, 48);
+            this.readPendTrandBtn.TabIndex = 19;
+            this.readPendTrandBtn.Text = "Read Pending Transactions ";
+            this.readPendTrandBtn.UseVisualStyleBackColor = true;
+            this.readPendTrandBtn.Click += new System.EventHandler(this.ReadPendTrandBtn_Click);
+            // 
+            // GenwTransBTN
+            // 
+            this.GenwTransBTN.Location = new System.Drawing.Point(442, 397);
+            this.GenwTransBTN.Name = "GenwTransBTN";
+            this.GenwTransBTN.Size = new System.Drawing.Size(75, 23);
+            this.GenwTransBTN.TabIndex = 20;
+            this.GenwTransBTN.Text = "Gen W/ T";
+            this.GenwTransBTN.UseVisualStyleBackColor = true;
+            this.GenwTransBTN.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // BlockchainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(681, 633);
+            this.Controls.Add(this.GenwTransBTN);
+            this.Controls.Add(this.readPendTrandBtn);
             this.Controls.Add(this.printAllBtn);
             this.Controls.Add(this.blockGenBtn);
             this.Controls.Add(this.recieverKeyTBox);
@@ -272,6 +296,8 @@
         private System.Windows.Forms.TextBox recieverKeyTBox;
         private System.Windows.Forms.Button blockGenBtn;
         private System.Windows.Forms.Button printAllBtn;
+        private System.Windows.Forms.Button readPendTrandBtn;
+        private System.Windows.Forms.Button GenwTransBTN;
     }
 }
 

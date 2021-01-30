@@ -32,10 +32,18 @@ namespace BlockchainAssignment
             Blocks.Add(blck);
         }
 
-
+        public void purgeTPool(List<Transaction> chosenT)
+        {
+            TransactionPool = TransactionPool.Except(chosenT).ToList();
+        }
         public Block getLastBlock()
         {
             return Blocks[Blocks.Count - 1];
         }
+
+        public List<Transaction> retTPool() {
+            return TransactionPool;
+        }
+
     }
 }
