@@ -1,4 +1,5 @@
-﻿namespace BlockchainAssignment
+﻿
+namespace BlockchainAssignment
 {
     partial class BlockchainApp
     {
@@ -49,6 +50,7 @@
             this.printAllBtn = new System.Windows.Forms.Button();
             this.readPendTrandBtn = new System.Windows.Forms.Button();
             this.GenwTransBTN = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -57,13 +59,13 @@
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.richTextBox1.Location = new System.Drawing.Point(12, 12);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(657, 314);
+            this.richTextBox1.Size = new System.Drawing.Size(799, 314);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // printBtn
             // 
-            this.printBtn.Location = new System.Drawing.Point(13, 333);
+            this.printBtn.Location = new System.Drawing.Point(817, 12);
             this.printBtn.Name = "printBtn";
             this.printBtn.Size = new System.Drawing.Size(75, 23);
             this.printBtn.TabIndex = 1;
@@ -73,25 +75,26 @@
             // 
             // indexTBox
             // 
-            this.indexTBox.Location = new System.Drawing.Point(95, 333);
+            this.indexTBox.Location = new System.Drawing.Point(898, 14);
             this.indexTBox.Name = "indexTBox";
-            this.indexTBox.Size = new System.Drawing.Size(162, 20);
+            this.indexTBox.Size = new System.Drawing.Size(60, 20);
             this.indexTBox.TabIndex = 2;
             this.indexTBox.TextChanged += new System.EventHandler(this.IndexInput_TextChanged);
             // 
             // infoLbl
             // 
             this.infoLbl.AutoSize = true;
-            this.infoLbl.Location = new System.Drawing.Point(13, 363);
+            this.infoLbl.Location = new System.Drawing.Point(814, 38);
             this.infoLbl.Name = "infoLbl";
-            this.infoLbl.Size = new System.Drawing.Size(482, 13);
+            this.infoLbl.Size = new System.Drawing.Size(182, 39);
             this.infoLbl.TabIndex = 3;
-            this.infoLbl.Text = "Type the index of the block which you wish to reveal information about, then pres" +
-    "s the \"Print\" button.";
+            this.infoLbl.Text = "Type the index  of the block which \r\nyou wish to reveal information about, \r\nthen" +
+    " press the \"Print\" button.\r\n";
+            
             // 
             // genWalletBtn
             // 
-            this.genWalletBtn.Location = new System.Drawing.Point(12, 380);
+            this.genWalletBtn.Location = new System.Drawing.Point(12, 332);
             this.genWalletBtn.Name = "genWalletBtn";
             this.genWalletBtn.Size = new System.Drawing.Size(245, 23);
             this.genWalletBtn.TabIndex = 4;
@@ -101,7 +104,7 @@
             // 
             // valKeysBtn
             // 
-            this.valKeysBtn.Location = new System.Drawing.Point(316, 464);
+            this.valKeysBtn.Location = new System.Drawing.Point(321, 413);
             this.valKeysBtn.Name = "valKeysBtn";
             this.valKeysBtn.Size = new System.Drawing.Size(153, 23);
             this.valKeysBtn.TabIndex = 5;
@@ -111,7 +114,7 @@
             // 
             // pubKeyTBox
             // 
-            this.pubKeyTBox.Location = new System.Drawing.Point(12, 426);
+            this.pubKeyTBox.Location = new System.Drawing.Point(17, 374);
             this.pubKeyTBox.Name = "pubKeyTBox";
             this.pubKeyTBox.Size = new System.Drawing.Size(657, 20);
             this.pubKeyTBox.TabIndex = 6;
@@ -120,7 +123,7 @@
             // pubKeyLbl
             // 
             this.pubKeyLbl.AutoSize = true;
-            this.pubKeyLbl.Location = new System.Drawing.Point(13, 410);
+            this.pubKeyLbl.Location = new System.Drawing.Point(14, 358);
             this.pubKeyLbl.Name = "pubKeyLbl";
             this.pubKeyLbl.Size = new System.Drawing.Size(57, 13);
             this.pubKeyLbl.TabIndex = 7;
@@ -129,7 +132,7 @@
             // privKeyLbl
             // 
             this.privKeyLbl.AutoSize = true;
-            this.privKeyLbl.Location = new System.Drawing.Point(10, 451);
+            this.privKeyLbl.Location = new System.Drawing.Point(14, 397);
             this.privKeyLbl.Name = "privKeyLbl";
             this.privKeyLbl.Size = new System.Drawing.Size(61, 13);
             this.privKeyLbl.TabIndex = 8;
@@ -137,7 +140,7 @@
             // 
             // privKeyTBox
             // 
-            this.privKeyTBox.Location = new System.Drawing.Point(12, 467);
+            this.privKeyTBox.Location = new System.Drawing.Point(17, 413);
             this.privKeyTBox.Name = "privKeyTBox";
             this.privKeyTBox.Size = new System.Drawing.Size(298, 20);
             this.privKeyTBox.TabIndex = 9;
@@ -145,9 +148,9 @@
             // 
             // createTransBtn
             // 
-            this.createTransBtn.Location = new System.Drawing.Point(160, 496);
+            this.createTransBtn.Location = new System.Drawing.Point(160, 439);
             this.createTransBtn.Name = "createTransBtn";
-            this.createTransBtn.Size = new System.Drawing.Size(73, 49);
+            this.createTransBtn.Size = new System.Drawing.Size(73, 46);
             this.createTransBtn.TabIndex = 10;
             this.createTransBtn.Text = "Create Transaction";
             this.createTransBtn.UseVisualStyleBackColor = true;
@@ -156,7 +159,7 @@
             // amountLbl
             // 
             this.amountLbl.AutoSize = true;
-            this.amountLbl.Location = new System.Drawing.Point(13, 499);
+            this.amountLbl.Location = new System.Drawing.Point(14, 446);
             this.amountLbl.Name = "amountLbl";
             this.amountLbl.Size = new System.Drawing.Size(43, 13);
             this.amountLbl.TabIndex = 11;
@@ -165,7 +168,7 @@
             // feeLbl
             // 
             this.feeLbl.AutoSize = true;
-            this.feeLbl.Location = new System.Drawing.Point(13, 523);
+            this.feeLbl.Location = new System.Drawing.Point(14, 468);
             this.feeLbl.Name = "feeLbl";
             this.feeLbl.Size = new System.Drawing.Size(25, 13);
             this.feeLbl.TabIndex = 12;
@@ -174,7 +177,7 @@
             // RKeyLbl
             // 
             this.RKeyLbl.AutoSize = true;
-            this.RKeyLbl.Location = new System.Drawing.Point(13, 557);
+            this.RKeyLbl.Location = new System.Drawing.Point(12, 504);
             this.RKeyLbl.Name = "RKeyLbl";
             this.RKeyLbl.Size = new System.Drawing.Size(71, 13);
             this.RKeyLbl.TabIndex = 13;
@@ -182,28 +185,28 @@
             // 
             // amountTBox
             // 
-            this.amountTBox.Location = new System.Drawing.Point(54, 499);
+            this.amountTBox.Location = new System.Drawing.Point(54, 439);
             this.amountTBox.Name = "amountTBox";
             this.amountTBox.Size = new System.Drawing.Size(100, 20);
             this.amountTBox.TabIndex = 14;
             // 
             // feeTBox
             // 
-            this.feeTBox.Location = new System.Drawing.Point(54, 523);
+            this.feeTBox.Location = new System.Drawing.Point(54, 465);
             this.feeTBox.Name = "feeTBox";
             this.feeTBox.Size = new System.Drawing.Size(100, 20);
             this.feeTBox.TabIndex = 15;
             // 
             // recieverKeyTBox
             // 
-            this.recieverKeyTBox.Location = new System.Drawing.Point(13, 573);
+            this.recieverKeyTBox.Location = new System.Drawing.Point(12, 520);
             this.recieverKeyTBox.Name = "recieverKeyTBox";
             this.recieverKeyTBox.Size = new System.Drawing.Size(571, 20);
             this.recieverKeyTBox.TabIndex = 16;
             // 
             // blockGenBtn
             // 
-            this.blockGenBtn.Location = new System.Drawing.Point(532, 333);
+            this.blockGenBtn.Location = new System.Drawing.Point(817, 109);
             this.blockGenBtn.Name = "blockGenBtn";
             this.blockGenBtn.Size = new System.Drawing.Size(128, 87);
             this.blockGenBtn.TabIndex = 17;
@@ -213,9 +216,9 @@
             // 
             // printAllBtn
             // 
-            this.printAllBtn.Location = new System.Drawing.Point(264, 333);
+            this.printAllBtn.Location = new System.Drawing.Point(830, 80);
             this.printAllBtn.Name = "printAllBtn";
-            this.printAllBtn.Size = new System.Drawing.Size(75, 23);
+            this.printAllBtn.Size = new System.Drawing.Size(141, 23);
             this.printAllBtn.TabIndex = 18;
             this.printAllBtn.Text = "Print All";
             this.printAllBtn.UseVisualStyleBackColor = true;
@@ -223,9 +226,9 @@
             // 
             // readPendTrandBtn
             // 
-            this.readPendTrandBtn.Location = new System.Drawing.Point(239, 497);
+            this.readPendTrandBtn.Location = new System.Drawing.Point(239, 439);
             this.readPendTrandBtn.Name = "readPendTrandBtn";
-            this.readPendTrandBtn.Size = new System.Drawing.Size(100, 48);
+            this.readPendTrandBtn.Size = new System.Drawing.Size(100, 46);
             this.readPendTrandBtn.TabIndex = 19;
             this.readPendTrandBtn.Text = "Read Pending Transactions ";
             this.readPendTrandBtn.UseVisualStyleBackColor = true;
@@ -233,7 +236,7 @@
             // 
             // GenwTransBTN
             // 
-            this.GenwTransBTN.Location = new System.Drawing.Point(442, 397);
+            this.GenwTransBTN.Location = new System.Drawing.Point(817, 202);
             this.GenwTransBTN.Name = "GenwTransBTN";
             this.GenwTransBTN.Size = new System.Drawing.Size(75, 23);
             this.GenwTransBTN.TabIndex = 20;
@@ -241,12 +244,23 @@
             this.GenwTransBTN.UseVisualStyleBackColor = true;
             this.GenwTransBTN.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(898, 201);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
             // BlockchainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(681, 633);
+            this.ClientSize = new System.Drawing.Size(993, 557);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.GenwTransBTN);
             this.Controls.Add(this.readPendTrandBtn);
             this.Controls.Add(this.printAllBtn);
@@ -300,6 +314,6 @@
         private System.Windows.Forms.Button printAllBtn;
         private System.Windows.Forms.Button readPendTrandBtn;
         private System.Windows.Forms.Button GenwTransBTN;
+        private System.Windows.Forms.Button button1;
     }
 }
-

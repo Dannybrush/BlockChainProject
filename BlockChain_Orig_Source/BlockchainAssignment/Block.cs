@@ -16,10 +16,9 @@ namespace BlockchainAssignment
         public long nonce { get; set; } = 0;                                    // Number used once for Proof-of-Work and mining
         public string hash { get; set; }                                        // The current blocks "identity"
         public string prevHash { get; set; }                                    // A reference pointer to the previous block
-        public string merkleRoot { get; set; }                                  // The merkle root of all transactions in the block
+        public string merkleRoot { get; set; } = "0";                              // The merkle root of all transactions in the block
         public string minerAddress { get; set; }                                // Public Key (Wallet Address) of the Miner
         public double reward { get; set; }                                      // Simple fixed reward established by "Coinbase"
-
 
 
 
@@ -74,22 +73,40 @@ namespace BlockchainAssignment
             this.hash = this.Create256Hash();    //    Create hash from index, prevhash and time
         }
 
-        public string ReturnString() {
-            return ("[BLOCK START]"
+        public override string ToString()
+        {
+            return  ("[BLOCK START]"
                 + "\nIndex: " + this.index
                 + "\tTimestamp: " + this.timeStamp
                 + "\nPrevious Hash: " + this.prevHash
-                + "\n-- PoW --"
+                + "\n\t\t-- PoW --"
                 + "\nDifficulty Level: " + this.difficulty
                 + "\nNonce: " + this.nonce
                 + "\nHash: " + this.hash
-                + "\n-- Rewards --"
+                + "\n\t\t-- Rewards --"
                 + "\nReward: " + this.reward
                 + "\nMiners Address: " + this.minerAddress
-                + "\n-- " + this.transactionList.Count + " Transactions --"
+                + "\n\t\t-- " + this.transactionList.Count + " Transactions --"
                 + "\nMerkle Root: " + this.merkleRoot
                 + "\n" + String.Join("\n", this.transactionList)
-                + "\n[BLOCK END]");
+                + "\n\t\t[BLOCK END]");
+        }
+        public string ReturnString() {
+            return ("\n\n\t\t[BLOCK START]"
+                + "\nIndex: " + this.index
+                + "\tTimestamp: " + this.timeStamp
+                + "\nPrevious Hash: " + this.prevHash
+                + "\n\t\t-- PoW --"
+                + "\nDifficulty Level: " + this.difficulty
+                + "\nNonce: " + this.nonce
+                + "\nHash: " + this.hash
+                + "\n\t\t-- Rewards --"
+                + "\nReward: " + this.reward
+                + "\nMiners Address: " + this.minerAddress
+                + "\n\t\t-- " + this.transactionList.Count + " Transactions --"
+                + "\nMerkle Root: " + this.merkleRoot
+                + "\n" + String.Join("\n", this.transactionList)
+                + "\n\t\t[BLOCK END]");
        
                 
                 /*(" The Block with Index: " + this.index +
@@ -176,5 +193,47 @@ namespace BlockchainAssignment
 
 
         }
+
+        public static string MerkleRoot(List<Transaction> transactionList) {
+
+            // X => f(X) means given X return f(X)
+            List<String> hashes = transactionList.Select(t => t.Hash).ToList(); // Get a list of transaction hashes for "combining"
+            // Handle Blocks with...
+            if (hashes.Count == 0) // No transactions
+            {
+                return String.Empty;
+            }
+            else if (hashes.Count == 1) // One transaction - hash with "self"
+            {
+                return HashCode.HashTools.combineHash(hashes[0], hashes[0]);
+            }
+            while (hashes.Count != 1) // Multiple transactions - Repeat until tree has been traversed
+            {
+                List<String> merkleLeaves = new List<String>(); // Keep track of current "level" of the tree
+
+                for (int i = 0; i < hashes.Count; i += 2) // Step over neighbouring pair combining each
+                {
+                    if (i == hashes.Count - 1)
+                    {
+                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashes[i], hashes[i])); // Handle an odd number of leaves
+                    }
+                    else
+                    {
+                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashes[i], hashes[i + 1])); // Hash neighbours leaves
+                    }
+                }
+                hashes = merkleLeaves; // Update the working "layer"
+            }
+            return hashes[0]; // Return the root node
+        }
+
+        // Create reward for incentivising the mining of block
+        public Transaction createRewardTransaction(List<Transaction> transactions)
+        {
+            double fees = transactions.Aggregate(0.0, (acc, t) => acc + t.Fee); // Sum all transaction fees
+            return new Transaction("Mine Rewards", "", minerAddress, (this.reward + fees), 0); // Issue reward as a transaction in the new block
+        }
+
     }
+
 }

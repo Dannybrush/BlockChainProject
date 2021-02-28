@@ -18,7 +18,7 @@ namespace BlockchainAssignment
         {
             InitializeComponent();
             blockchain = new Blockchain();
-            richTextBox1.Text = "New Blockchain Initialised by 27016005";
+            outputToRichTextBox1("New Blockchain Initialised by 27016005");
 
         }
 
@@ -68,7 +68,7 @@ namespace BlockchainAssignment
 
         private void BlockGenBtn_Click(object sender, EventArgs e)
         {
-            Block block = new Block(blockchain.getLastBlock());
+            Block block = new Block(blockchain.GetLastBlock());
             blockchain.add2Block(block);
         }
         /*private void BlockGenwithTransBtn_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace BlockchainAssignment
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Block block = new Block(blockchain.getLastBlock(), blockchain.retTPool());
+            Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool());
             blockchain.purgeTPool(block.transactionList);
             blockchain.add2Block(block);
         }
@@ -113,5 +113,17 @@ namespace BlockchainAssignment
         {
             valKeysBtn.BackColor = Color.AntiqueWhite;
         }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            outputToRichTextBox1(blockchain.ToString());
+        }
+
+        private void BlockchainApp_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
