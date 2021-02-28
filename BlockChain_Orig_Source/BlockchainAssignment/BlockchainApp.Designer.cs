@@ -115,6 +115,7 @@
             this.pubKeyTBox.Name = "pubKeyTBox";
             this.pubKeyTBox.Size = new System.Drawing.Size(657, 20);
             this.pubKeyTBox.TabIndex = 6;
+            this.pubKeyTBox.TextChanged += new System.EventHandler(this.PubKeyTBox_TextChanged);
             // 
             // pubKeyLbl
             // 
@@ -140,6 +141,7 @@
             this.privKeyTBox.Name = "privKeyTBox";
             this.privKeyTBox.Size = new System.Drawing.Size(298, 20);
             this.privKeyTBox.TabIndex = 9;
+            this.privKeyTBox.TextChanged += new System.EventHandler(this.PrivKeyTBox_TextChanged);
             // 
             // createTransBtn
             // 

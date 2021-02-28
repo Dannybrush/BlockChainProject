@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace BlockchainAssignment
 {
+     
     public partial class BlockchainApp : Form
     {
         Blockchain blockchain;
@@ -98,6 +99,19 @@ namespace BlockchainAssignment
                s+= T +": \n "+T.ReturnString() + "\n \n ";
             }
             outputToRichTextBox1(s);
+        }
+
+
+        /*If Text in Key boxes changes, Reset validation 
+         
+             In future there is possibility to autonomise this so a button is not required. */
+        private void PubKeyTBox_TextChanged(object sender, EventArgs e)
+        {
+            valKeysBtn.BackColor = Color.AntiqueWhite;
+        }
+        private void PrivKeyTBox_TextChanged(object sender, EventArgs e)
+        {
+            valKeysBtn.BackColor = Color.AntiqueWhite;
         }
     }
 }
