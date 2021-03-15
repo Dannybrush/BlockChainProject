@@ -59,10 +59,10 @@ namespace BlockchainAssignment
             this.timeStamp = DateTime.Now;                                    // new time
             this.index = 0;                                                  //  First Block = 0 
             this.prevHash = string.Empty;                                   //   No Previous Hash  
-            this.hash = this.Create256Hash();                              //    Create hash from index, prevhash and time
+            this.hash = this.Create256Mine();                              //    Create hash from index, prevhash and time
         }
 
-        public Block(Block lastBlock, List<Transaction> TPool, string minerAddress)
+        public Block(Block lastBlock, List<Transaction> TPool, string MinerAddress)
         {
             this.transactionList = new List<Transaction>();
             this.nonce = 0;
@@ -70,12 +70,12 @@ namespace BlockchainAssignment
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
             this.addFromPool(TPool);
-            this.hash = this.Create256Hash();    //    Create hash from index, prevhash and time
+            this.hash = this.Create256Mine();    //    Create hash from index, prevhash and time
         }
 
         public override string ToString()
         {
-            return  ("[BLOCK START]"
+            return ("\n\n\t\t[BLOCK START]"
                 + "\nIndex: " + this.index
                 + "\tTimestamp: " + this.timeStamp
                 + "\nPrevious Hash: " + this.prevHash
@@ -90,6 +90,21 @@ namespace BlockchainAssignment
                 + "\nMerkle Root: " + this.merkleRoot
                 + "\n" + String.Join("\n", this.transactionList)
                 + "\n\t\t[BLOCK END]");
+                /*("[BLOCK START]"
+                + "\nIndex: " + this.index
+                + "\tTimestamp: " + this.timeStamp
+                + "\nPrevious Hash: " + this.prevHash
+                + "\n\t\t-- PoW --"
+                + "\nDifficulty Level: " + this.difficulty
+                + "\nNonce: " + this.nonce
+                + "\nHash: " + this.hash
+                + "\n\t\t-- Rewards --"
+                + "\nReward: " + this.reward
+                + "\nMiners Address: " + this.minerAddress
+                + "\n\t\t-- " + this.transactionList.Count + " Transactions --"
+                + "\nMerkle Root: " + this.merkleRoot
+                + "\n" + String.Join("\n", this.transactionList)
+                + "\n\t\t[BLOCK END]");*/
         }
         public string ReturnString() {
             return ("\n\n\t\t[BLOCK START]"
@@ -120,11 +135,11 @@ namespace BlockchainAssignment
         public string readblock()
         {
             string s = "";
-            s += this.ReturnString();
+            s += this.ToString();
 
             foreach (Transaction T in transactionList)
             {
-                s += ("\n" + T.ReturnString());
+                s += ("\n" + T.ToString());
             }
             return s;
 
@@ -144,22 +159,7 @@ namespace BlockchainAssignment
             }
         }
 
-        private string ArchivedCreate256Hash() { // i think this can be simplified // Simplified Heavily is "this" needed?
-            SHA256 hasher;
-            hasher = SHA256Managed.Create();
-            String input = this.index.ToString() + this.timeStamp.ToString() + this.prevHash;
-            Byte[] hashByte = hasher.ComputeHash(Encoding.UTF8.GetBytes((input)));
-
-            String hash = string.Empty;
-
-            foreach (byte x in hashByte)
-            {
-                hash += String.Format("{0:x2}", x);
-            }
-            return hash;
-
-
-        }
+       
         private string Create256Hash()
         { // i think this can be simplified // Simplified Heavily is "this" needed?
             SHA256 hasher;
@@ -233,7 +233,22 @@ namespace BlockchainAssignment
             double fees = transactions.Aggregate(0.0, (acc, t) => acc + t.Fee); // Sum all transaction fees
             return new Transaction("Mine Rewards", "", minerAddress, (this.reward + fees), 0); // Issue reward as a transaction in the new block
         }
+        private string ArchivedCreate256Hash() { // i think this can be simplified // Simplified Heavily is "this" needed?
+            SHA256 hasher;
+            hasher = SHA256Managed.Create();
+            String input = this.index.ToString() + this.timeStamp.ToString() + this.prevHash;
+            Byte[] hashByte = hasher.ComputeHash(Encoding.UTF8.GetBytes((input)));
 
+            String hash = string.Empty;
+
+            foreach (byte x in hashByte)
+            {
+                hash += String.Format("{0:x2}", x);
+            }
+            return hash;
+
+
+        }
     }
-
+ 
 }

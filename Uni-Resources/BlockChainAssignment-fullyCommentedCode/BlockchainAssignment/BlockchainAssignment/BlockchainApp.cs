@@ -30,7 +30,7 @@ namespace BlockchainAssignment
         // Print entire blockchain to UI
         private void ReadAll_Click(object sender, EventArgs e)
         {
-            UpdateText(blockchain.ToString());
+            UpdateText(blockchain.ToString());  
         }
 
         // Print Block N (based on user input)

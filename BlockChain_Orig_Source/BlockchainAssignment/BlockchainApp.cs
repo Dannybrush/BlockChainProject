@@ -31,7 +31,11 @@ namespace BlockchainAssignment
         {
             // richTextBox1.Text = indexInput.Text;         // first gen
             // outputToRichTextBox1(indexInput.Text);       // second gen
-            outputToRichTextBox1(blockchain.BlockString(Convert.ToInt32(indexTBox.Text)));
+            if (Int32.TryParse(indexTBox.Text, out int index))
+                outputToRichTextBox1(blockchain.GetBlockAsString(index));
+            else
+                outputToRichTextBox1("Invalid Block No.");
+           // outputToRichTextBox1(blockchain.BlockString();
         }
 
         private void outputToRichTextBox1(string toBePrinted) { richTextBox1.Text = toBePrinted; }
