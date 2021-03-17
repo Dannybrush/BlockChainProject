@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainAssignment
 {
-     
+
     public partial class BlockchainApp : Form
     {
         Blockchain blockchain;
@@ -41,17 +35,12 @@ namespace BlockchainAssignment
         private void outputToRichTextBox1(string toBePrinted) { richTextBox1.Text = toBePrinted; }
         private void outputToTextBox(TextBox TBox, string toBePrinted) { TBox.Text = toBePrinted; }
 
-        private void IndexInput_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void GenWalletBtn_Click(object sender, EventArgs e)
         {
-            String privKey;
-            Wallet.Wallet myNewWallet = new Wallet.Wallet(out privKey);
+            //String privKey;
+            Wallet.Wallet myNewWallet = new Wallet.Wallet(out string privKey);
             String publicKey = myNewWallet.publicID;
-            Console.WriteLine(publicKey + "\n" + privKey);
+            //Console.WriteLine(publicKey + "\n" + privKey);
             outputToTextBox(privKeyTBox, privKey);
             outputToTextBox(pubKeyTBox, publicKey) ;
         }
@@ -92,7 +81,7 @@ namespace BlockchainAssignment
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool());
+            Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool(), pubKeyTBox.Text);
             blockchain.purgeTPool(block.transactionList);
             blockchain.add2Block(block);
         }
@@ -128,6 +117,37 @@ namespace BlockchainAssignment
 
         }
 
-       
+          private void IndexInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    
+
+        private void Validate_Click(object sender, EventArgs e)
+        {
+            // CASE: Genesis Block - Check only hash as no transactions are currently present
+            if (blockchain.Blocks.Count == 1)
+            {
+                if (!Blockchain.ValidateHash(blockchain.Blocks[0])) // Recompute Hash to check validity
+                    outputToRichTextBox1("Blockchain is invalid");
+                else
+                    outputToRichTextBox1("Blockchain is valid");
+                return;
+            }
+
+            for (int i = 1; i < blockchain.Blocks.Count - 1; i++)
+            {
+                if (
+                    blockchain.Blocks[i].prevHash != blockchain.Blocks[i - 1].hash || // Check hash "chain"
+                    !Blockchain.ValidateHash(blockchain.Blocks[i]) ||  // Check each Block hash
+                    !Blockchain.ValidateMerkleRoot(blockchain.Blocks[i]) // Check transaction integrity using Merkle Root
+                )
+                {
+                    outputToRichTextBox1("Blockchain is invalid");
+                    return;
+                }
+            }
+            outputToRichTextBox1("Blockchain is valid");
+        }
     }
 }

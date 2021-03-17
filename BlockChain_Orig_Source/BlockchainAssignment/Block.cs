@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlockchainAssignment
 {
     class Block
     {
+        public Boolean THREADING { get; set; } = true;                                 // Boolean to tell whether to use threading or not
         public List<Transaction> transactionList { get; set; }                  // List of transactions in this block
         public DateTime timeStamp { get; set; }                                 // Time of creation
         public int index { get; set; }                                          // Position of the block in the sequence of blocks
@@ -18,7 +21,14 @@ namespace BlockchainAssignment
         public string prevHash { get; set; }                                    // A reference pointer to the previous block
         public string merkleRoot { get; set; } = "0";                              // The merkle root of all transactions in the block
         public string minerAddress { get; set; }                                // Public Key (Wallet Address) of the Miner
-        public double reward { get; set; }                                      // Simple fixed reward established by "Coinbase"
+        public double reward { get; set; } = 1;                                     // Simple fixed reward established by "Coinbase"
+
+// private int nonce = 0;
+        private int nonce0 = 0;
+        private int nonce1 = 1;
+        private string finalHash, finalHash0, finalHash1;
+        private bool th1Fin = false, th2Fin = false;
+
 
 
 
@@ -28,7 +38,11 @@ namespace BlockchainAssignment
             this.nonce = 0;
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
-            this.hash = this.Create256Hash();                              //    Create hash from index, prevhash and time
+            if (THREADING == true){
+                this.hash = this.ThreadedMine();
+            }
+            else this.hash = this.Create256Hash();
+            //    Create hash from index, prevhash and time
             this.transactionList = new List<Transaction>();
            
         }
@@ -41,7 +55,8 @@ namespace BlockchainAssignment
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
             this.addFromPool(TPool);
-            this.hash = this.Create256Hash();    //    Create hash from index, prevhash and time
+
+            //this.hash = this.Create256Hash();    //    Create hash from index, prevhash and time
         }
         // Constructor which is passed the index & hash of previous block
         public Block(int lastIndex, string lastHash) {
@@ -69,8 +84,18 @@ namespace BlockchainAssignment
             this.timeStamp = DateTime.Now;
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
+            this.minerAddress = MinerAddress;
+            TPool.Add(createRewardTransaction(TPool)); // Create and append the reward transaction
             this.addFromPool(TPool);
-            this.hash = this.Create256Mine();    //    Create hash from index, prevhash and time
+            // this.hash = this.Create256Mine();    //    Create hash from index, prevhash and time
+            merkleRoot = MerkleRoot(transactionList); // Calculate the merkle root of the blocks transactions
+
+            if (THREADING == true)
+            {
+                this.hash = this.ThreadedMine();
+            }
+            else this.hash = this.Create256Hash();
+
         }
 
         public override string ToString()
@@ -160,11 +185,11 @@ namespace BlockchainAssignment
         }
 
        
-        private string Create256Hash()
+        public string Create256Hash()
         { // i think this can be simplified // Simplified Heavily is "this" needed?
             SHA256 hasher;
             hasher = SHA256Managed.Create();
-            String input = this.index.ToString() + this.timeStamp.ToString() + this.prevHash+this.nonce;
+            String input = this.index.ToString() + this.timeStamp.ToString() + this.prevHash + this.nonce + this.merkleRoot;
             Byte[] hashByte = hasher.ComputeHash(Encoding.UTF8.GetBytes((input)));
 
             String hash = string.Empty;
@@ -188,10 +213,7 @@ namespace BlockchainAssignment
                 this.nonce++;
             }
             this.nonce--;
-
             return hash;
-
-
         }
 
         public static string MerkleRoot(List<Transaction> transactionList) {
@@ -249,6 +271,120 @@ namespace BlockchainAssignment
 
 
         }
+
+        /*FOR MULTI THREADING */
+
+        public string ThreadedMine(){
+            Thread th1 = new Thread(Mine0);
+            Thread th2 = new Thread(Mine1);
+
+            th1.Start();
+            th2.Start();
+
+            while (th1.IsAlive == true || th2.IsAlive == true){Thread.Sleep(1);}
+
+            if (nonce0 < nonce1){
+                nonce = nonce0;
+                finalHash = finalHash0;
+            }
+            else{
+                nonce = nonce1;
+                finalHash = finalHash1;
+            }
+            return finalHash;
+        }
+
+        public void Mine0(){
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            Boolean check = false;
+            String hash;
+            string diffString = new string('0', this.difficulty);
+
+            while (check == false)
+            {
+                hash = Create256Hash(nonce0);
+                if (hash.StartsWith(diffString) == true){
+                    check = true;
+                    finalHash0 = hash;
+
+                    th1Fin = true;
+
+                    Console.WriteLine(nonce0);
+                    sw.Stop();
+                    Console.WriteLine("Th1 mine:");
+                    Console.WriteLine(sw.Elapsed);
+
+                    return;
+                }
+                else if (th2Fin == true){
+                    Console.WriteLine("Thread 1 closed");
+                    Thread.Sleep(1);
+                    return;
+                }
+                else{
+                    check = false;
+                    nonce0 += 2;
+                }
+            }
+            return;
+        }
+
+        public void Mine1()
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            Boolean check = false;
+            String hash;
+            string diffString = new string('0', this.difficulty);
+            while (check == false){
+                hash = Create256Hash(nonce1);
+                if (hash.StartsWith(diffString) == true){
+                    check = true;
+                    finalHash1 = hash;
+
+                    th2Fin = true;
+
+                    Console.WriteLine(nonce1);
+                    sw.Stop();
+                    Console.WriteLine("Th2 mine:");
+                    Console.WriteLine(sw.Elapsed);
+
+                    return;
+                }
+                else if (th1Fin == true){
+                    Console.WriteLine("Thread 2 closed");
+                    Thread.Sleep(1);
+                    return;
+                }
+                else{
+                    check = false;
+                    nonce1 += 2;
+                }
+            }
+            return;
+        }
+
+        //Version of above method to take nonce as a parameter
+        public String Create256Hash(int inNonce)
+        {
+            SHA256 hasher;
+            hasher = SHA256Managed.Create();
+            String input = reward + this.index.ToString() + this.timeStamp.ToString() + this.prevHash + inNonce + merkleRoot;
+            Byte[] hashByte = hasher.ComputeHash(Encoding.UTF8.GetBytes((input)));
+            String hash = string.Empty;
+
+            foreach (byte x in hashByte)
+            {
+                hash += String.Format("{0:x2}", x);
+            }
+            return hash;
+        }
+
+        
+
+
+
     }
- 
+
 }

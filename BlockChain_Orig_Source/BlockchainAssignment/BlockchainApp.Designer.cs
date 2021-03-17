@@ -51,6 +51,7 @@ namespace BlockchainAssignment
             this.readPendTrandBtn = new System.Windows.Forms.Button();
             this.GenwTransBTN = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -90,7 +91,6 @@ namespace BlockchainAssignment
             this.infoLbl.TabIndex = 3;
             this.infoLbl.Text = "Type the index  of the block which \r\nyou wish to reveal information about, \r\nthen" +
     " press the \"Print\" button.\r\n";
-            
             // 
             // genWalletBtn
             // 
@@ -248,11 +248,19 @@ namespace BlockchainAssignment
             // 
             this.button1.Location = new System.Drawing.Point(898, 201);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(83, 23);
             this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
+            this.button1.Text = "PRNT ALL";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(818, 232);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(163, 21);
+            this.comboBox1.TabIndex = 22;
             // 
             // BlockchainApp
             // 
@@ -260,6 +268,7 @@ namespace BlockchainAssignment
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(993, 557);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.GenwTransBTN);
             this.Controls.Add(this.readPendTrandBtn);
@@ -315,5 +324,6 @@ namespace BlockchainAssignment
         private System.Windows.Forms.Button readPendTrandBtn;
         private System.Windows.Forms.Button GenwTransBTN;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

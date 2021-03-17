@@ -64,5 +64,41 @@ namespace BlockchainAssignment
         {
             return string.Join("\n", Blocks);
         }
+
+        // Check validity of a blocks hash by recomputing the hash and comparing with the mined value
+        public static bool ValidateHash(Block b){
+            String rehash = b.Create256Hash();
+            return rehash.Equals(b.hash);
+        }
+
+        // Check the balance associated with a wallet based on the public key
+        public double GetBalance(String address)
+        {
+            // Accumulator value
+            double balance = 0;
+
+            // Loop through all approved transactions in order to assess account balance
+            foreach (Block b in Blocks)
+            {
+                foreach (Transaction t in b.transactionList)
+                {
+                    if (t.RecipientAddress.Equals(address))
+                    {
+                        balance += t.Amount; // Credit funds recieved
+                    }
+                    if (t.SenderAddress.Equals(address))
+                    {
+                        balance -= (t.Amount + t.Fee); // Debit payments placed
+                    }
+                }
+            }
+            return balance;
+        }
+
+        // Check validity of the merkle root by recalculating the root and comparing with the mined value
+        public static bool ValidateMerkleRoot(Block b){
+            String reMerkle = Block.MerkleRoot(b.transactionList);
+            return reMerkle.Equals(b.merkleRoot);
+        }
     }
 }
