@@ -62,6 +62,7 @@ namespace BlockchainAssignment
 
         }
 
+        /* Two  similar implementations to print the contents of a transaction: one using the ToString Override*/
         public override string ToString()
         {
             return ("[TRANSACTION START]"

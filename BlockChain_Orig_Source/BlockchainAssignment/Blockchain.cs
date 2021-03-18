@@ -57,9 +57,12 @@ namespace BlockchainAssignment
             return Blocks[Blocks.Count - 1];
         }
 
+        /* Function to return the transaction pool*/ 
         public List<Transaction> retTPool() {
             return TransactionPool;
         }
+
+        /* Function to return the block chain */ 
         public override string ToString()
         {
             return string.Join("\n", Blocks);
@@ -67,9 +70,17 @@ namespace BlockchainAssignment
 
         // Check validity of a blocks hash by recomputing the hash and comparing with the mined value
         public static bool ValidateHash(Block b){
-            String rehash = b.Create256Hash();
+            string rehash =string.Empty ;
+            /* if (b.THREADING == true){
+                 rehash = b.ThreadedMine();
+             }
+             else { rehash = b.Create256Hash(); }*/
+            rehash = b.Create256Hash();
+            Console.WriteLine("Rehash: " + rehash + " --> Hash: " + b.hash);
             return rehash.Equals(b.hash);
         }
+
+
 
         // Check the balance associated with a wallet based on the public key
         public double GetBalance(String address)

@@ -84,6 +84,7 @@ namespace BlockchainAssignment
             Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool(), pubKeyTBox.Text);
             blockchain.purgeTPool(block.transactionList);
             blockchain.add2Block(block);
+            Console.WriteLine("added new block to chain - with " + block.transactionList.Count + " transactions");
         }
 
         private void ReadPendTrandBtn_Click(object sender, EventArgs e)
@@ -129,25 +130,40 @@ namespace BlockchainAssignment
             if (blockchain.Blocks.Count == 1)
             {
                 if (!Blockchain.ValidateHash(blockchain.Blocks[0])) // Recompute Hash to check validity
-                    outputToRichTextBox1("Blockchain is invalid");
+                    outputToRichTextBox1("Blockchain is invalid - Hash ");
                 else
                     outputToRichTextBox1("Blockchain is valid");
                 return;
             }
 
+            Console.WriteLine(" NewBlock: " + (blockchain.Blocks.Count - 1)); 
             for (int i = 1; i < blockchain.Blocks.Count - 1; i++)
             {
+                Console.WriteLine("Hash for block " + i);
                 if (
                     blockchain.Blocks[i].prevHash != blockchain.Blocks[i - 1].hash || // Check hash "chain"
                     !Blockchain.ValidateHash(blockchain.Blocks[i]) ||  // Check each Block hash
                     !Blockchain.ValidateMerkleRoot(blockchain.Blocks[i]) // Check transaction integrity using Merkle Root
                 )
                 {
-                    outputToRichTextBox1("Blockchain is invalid");
+                    outputToRichTextBox1("Blockchain is invalid " + (blockchain.Blocks[i].prevHash != blockchain.Blocks[i - 1].hash).ToString() + "  " +
+                    !Blockchain.ValidateHash(blockchain.Blocks[i]) + "  " + // Check each Block hash
+                    !Blockchain.ValidateMerkleRoot(blockchain.Blocks[i]) + " " + blockchain.Blocks[i].nonce);// C);
                     return;
                 }
             }
             outputToRichTextBox1("Blockchain is valid");
+        }
+
+        // Check the balance of current user
+        private void CheckBalance_Click(object sender, EventArgs e)
+        {
+            outputToRichTextBox1(blockchain.GetBalance(pubKeyTBox.Text).ToString() + " Assignment Coin");
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

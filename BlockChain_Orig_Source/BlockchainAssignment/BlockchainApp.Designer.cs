@@ -52,6 +52,8 @@ namespace BlockchainAssignment
             this.GenwTransBTN = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.validate = new System.Windows.Forms.Button();
+            this.CheckBalance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -256,11 +258,39 @@ namespace BlockchainAssignment
             // 
             // comboBox1
             // 
+            this.comboBox1.DisplayMember = "None";
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Greedy",
+            "Altruistic",
+            "Random"});
             this.comboBox1.Location = new System.Drawing.Point(818, 232);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(163, 21);
             this.comboBox1.TabIndex = 22;
+            this.comboBox1.Text = "Mining Preference System";
+            this.comboBox1.ValueMember = "None";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            // 
+            // validate
+            // 
+            this.validate.Location = new System.Drawing.Point(346, 439);
+            this.validate.Name = "validate";
+            this.validate.Size = new System.Drawing.Size(116, 46);
+            this.validate.TabIndex = 23;
+            this.validate.Text = "Validate Blockchain";
+            this.validate.UseVisualStyleBackColor = true;
+            this.validate.Click += new System.EventHandler(this.Validate_Click);
+            // 
+            // CheckBalance
+            // 
+            this.CheckBalance.Location = new System.Drawing.Point(469, 439);
+            this.CheckBalance.Name = "CheckBalance";
+            this.CheckBalance.Size = new System.Drawing.Size(114, 46);
+            this.CheckBalance.TabIndex = 24;
+            this.CheckBalance.Text = "Check Balance";
+            this.CheckBalance.UseVisualStyleBackColor = true;
+            this.CheckBalance.Click += new System.EventHandler(this.CheckBalance_Click);
             // 
             // BlockchainApp
             // 
@@ -268,6 +298,8 @@ namespace BlockchainAssignment
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(993, 557);
+            this.Controls.Add(this.CheckBalance);
+            this.Controls.Add(this.validate);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.GenwTransBTN);
@@ -325,5 +357,7 @@ namespace BlockchainAssignment
         private System.Windows.Forms.Button GenwTransBTN;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button validate;
+        private System.Windows.Forms.Button CheckBalance;
     }
 }
