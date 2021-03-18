@@ -54,6 +54,7 @@ namespace BlockchainAssignment
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.validate = new System.Windows.Forms.Button();
             this.CheckBalance = new System.Windows.Forms.Button();
+            this.addressFind = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -263,7 +264,8 @@ namespace BlockchainAssignment
             this.comboBox1.Items.AddRange(new object[] {
             "Greedy",
             "Altruistic",
-            "Random"});
+            "Random",
+            "Address Preference"});
             this.comboBox1.Location = new System.Drawing.Point(818, 232);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(163, 21);
@@ -292,12 +294,21 @@ namespace BlockchainAssignment
             this.CheckBalance.UseVisualStyleBackColor = true;
             this.CheckBalance.Click += new System.EventHandler(this.CheckBalance_Click);
             // 
+            // addressFind
+            // 
+            this.addressFind.Location = new System.Drawing.Point(818, 260);
+            this.addressFind.Name = "addressFind";
+            this.addressFind.Size = new System.Drawing.Size(163, 20);
+            this.addressFind.TabIndex = 25;
+            this.addressFind.Text = "Search for: ";
+            // 
             // BlockchainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(993, 557);
+            this.Controls.Add(this.addressFind);
             this.Controls.Add(this.CheckBalance);
             this.Controls.Add(this.validate);
             this.Controls.Add(this.comboBox1);
@@ -359,5 +370,6 @@ namespace BlockchainAssignment
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button validate;
         private System.Windows.Forms.Button CheckBalance;
+        private System.Windows.Forms.TextBox addressFind;
     }
 }

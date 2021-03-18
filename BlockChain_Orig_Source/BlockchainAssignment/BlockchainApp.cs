@@ -81,7 +81,7 @@ namespace BlockchainAssignment
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool(), pubKeyTBox.Text);
+            Block block = new Block(blockchain.GetLastBlock(), blockchain.retTPool(), pubKeyTBox.Text, comboBox1.SelectedIndex, addressFind.Text);
             blockchain.purgeTPool(block.transactionList);
             blockchain.add2Block(block);
             Console.WriteLine("added new block to chain - with " + block.transactionList.Count + " transactions");

@@ -11,11 +11,11 @@ namespace BlockchainAssignment
 {
     class Block
     {
-        public Boolean THREADING { get; set; } = false;                                 // Boolean to tell whether to use threading or not
+        public Boolean THREADING { get; set; } = true;                                 // Boolean to tell whether to use threading or not
         public List<Transaction> transactionList { get; set; }                  // List of transactions in this block
         public DateTime timeStamp { get; set; }                                 // Time of creation
         public int index { get; set; }                                          // Position of the block in the sequence of blocks
-        public int difficulty { get; set; } = 4;                                // An arbitrary number of 0's to proceed a hash value
+        public int difficulty { get; set; }                                    // An arbitrary number of 0's to proceed a hash value
         public long nonce { get; set; } = 0;                                    // Number used once for Proof-of-Work and mining
         public string hash { get; set; }                                        // The current blocks "identity"
         public string prevHash { get; set; }                                    // A reference pointer to the previous block
@@ -58,7 +58,7 @@ namespace BlockchainAssignment
             this.timeStamp = DateTime.Now;
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
-            this.addFromPool(TPool);
+            this.addFromPool(TPool, 2, "!");
 
             //this.hash = this.Create256Hash();    //    Create hash from index, prevhash and time
         }
@@ -79,18 +79,21 @@ namespace BlockchainAssignment
             this.index = 0;                                                  //  First Block = 0 
             this.prevHash = string.Empty;                                   //   No Previous Hash  
             this.hash = this.Create256Mine();                              //    Create hash from index, prevhash and time
+            this.difficulty = 4;
         }
 
-        public Block(Block lastBlock, List<Transaction> TPool, string MinerAddress)
+        public Block(Block lastBlock, List<Transaction> TPool, string MinerAddress, int setting, string address )
         {
             this.transactionList = new List<Transaction>();
             this.nonce = 0;
             this.timeStamp = DateTime.Now;
+            this.difficulty = lastBlock.difficulty;
+            this.adjustdiff(lastBlock.timeStamp); // comment out this line to turn off adjustable difficulty
             this.index = lastBlock.index + 1;
             this.prevHash = lastBlock.hash;
             this.minerAddress = MinerAddress;
             TPool.Add(createRewardTransaction(TPool)); // Create and append the reward transaction
-            this.addFromPool(TPool);
+            this.addFromPool(TPool, setting, address );
             // this.hash = this.Create256Mine();    //    Create hash from index, prevhash and time
             this.merkleRoot = MerkleRoot(transactionList); // Calculate the merkle root of the blocks transactions
 
@@ -180,30 +183,64 @@ namespace BlockchainAssignment
             this.transactionList.Add(T);
         }
 
-        public void addFromPool(List<Transaction> TP , int mode)
+        public void addFromPool(List<Transaction> TP, int mode, string address)
         {
             int LIMIT = 5;
+            int idx =0 ;
+
             
-
-            bool max = false; 
-            while (!max) {
-                if (mode == 1 ) {// greedy
-                    Transaction temp = TP[0];
-                    for (int i = 0; ((i < TP.Count) && (transactionList.Count < LIMIT)); i++)
+            while (transactionList.Count < LIMIT && TP.Count > 0 ) {
+                if (mode == 0 ) {// greedy
+                    //int idx = 0;
+                    for (int i = 0; ((i < TP.Count)); i++)
                     {
-
+                        if (TP.ElementAt(i).Fee > TP.ElementAt(idx).Fee)
+                        {
+                            idx = i;
+                        }
                     }
-
+                    this.transactionList.Add(TP.ElementAt(idx));
                 } 
-                else if (true) {// altruistic
+                else if (mode == 1) {// altruistic
                     for (int i = 0; ((i < TP.Count) && (i < LIMIT)); i++)
                     {
                         this.transactionList.Add(TP.ElementAt(i));
                     }
                 } 
-                else if (true) { }   //random
-
+                else if (mode == 2 ) {  //random      
+                    Random random = new Random();
+                    idx = random.Next(0, TP.Count);
+                    this.transactionList.Add(TP.ElementAt(idx));
+                }       
+                else if (mode == 3) {
+                    
+                    //this.transactionList.Add(TP.ElementAt(0));
+                    for (int i = 0; i < TP.Count && (transactionList.Count < LIMIT); i++)
+                    {                       
+                        if (TP.ElementAt(i).SenderAddress == address)
+                        {
+                            this.transactionList.Add(TP.ElementAt(i));
+                        }
+                        else if (TP.ElementAt(i).RecipientAddress == address)
+                        {
+                            this.transactionList.Add(TP.ElementAt(i));
+                        }
+                        else
+                        {
+                            // ONLY TAKE FROM THIS ADDRESS: 
+                            // If take address as priority and then add up to get to 5 --> add mode = 2 here
+                        }
+                        //TP = TP.Except(this.transactionList).ToList();
+                        
+                    }
+                    Console.WriteLine("Endless loop");
+                }
+                else
+                { // No Valid input, choose default --> Altruistic
+                    mode = 1; 
+                }
                 TP = TP.Except(this.transactionList).ToList();
+                
             }
 
         }
@@ -301,15 +338,16 @@ namespace BlockchainAssignment
         /*FOR MULTI THREADING */
 
         public void ThreadedMine(){
-            Thread th1 = new Thread(Mine0);
-            Thread th2 = new Thread(Mine1);
+            Thread th1 = new Thread(this.Mine0);
+            Thread th2 = new Thread(this.Mine1);
 
             th1.Start();
             th2.Start();
 
             while (th1.IsAlive == true || th2.IsAlive == true){Thread.Sleep(1);}
 
-            if (this.nonce0 < this.nonce1){
+            //if (this.nonce0  < this.nonce1){
+            if (this.finalHash1 is null) { 
                 this.nonce = this.nonce0;
                 this.finalHash = this.finalHash0;
             }
@@ -319,7 +357,15 @@ namespace BlockchainAssignment
             }
             if (this.finalHash is null)
             {
-                throw new Exception("NULL finalhash");
+                Console.WriteLine(this.ReturnString());
+                throw new Exception("NULL finalhash" + 
+                    " Nonce0: " + this.nonce0 + 
+                    " Nonce1: "+ this.nonce1 + 
+                    " Nonce: " + this.nonce +
+                    " finalhash0 " + this.finalHash0 +
+                    " finalhash1: " + this.finalHash1 +
+                    " NewHash: " + this.Create256Hash());
+               
             }
             //Console.WriteLine("FINALHASH = " + finalHash);
             //return finalHash;
@@ -416,7 +462,47 @@ namespace BlockchainAssignment
             return hash;
         }
 
-        
+        //Function to adjust the difficulty
+        public void adjustdiff(DateTime lastTime)
+        {
+            //Gets the elapsed time between now and the last block mined
+            DateTime startTime = DateTime.UtcNow;
+            TimeSpan timeDiff = startTime - lastTime;
+
+            //If the difference is less than 5 seconds, the difficulty is increased to attempt to increase the time
+            if (timeDiff < TimeSpan.FromSeconds(5))
+            {
+                this.difficulty++;
+                Console.WriteLine("Time since last mine");
+                Console.WriteLine(timeDiff);
+                Console.WriteLine("New Difficulty:");
+                Console.WriteLine(this.difficulty);
+            }
+            //If the difference is more than 5 seconds, the difficulty is increased to attempt to decrease the time
+            else if (timeDiff > TimeSpan.FromSeconds(5))
+            {
+                difficulty--;
+                Console.WriteLine("Time since last mine");
+                Console.WriteLine(timeDiff);
+                Console.WriteLine("New Difficulty:");
+                Console.WriteLine(this.difficulty);
+            }
+
+            //Difficulty can never be higher than 5 or lower than 0
+            if (this.difficulty <= 0)
+            {
+                this.difficulty = 0;
+                Console.WriteLine("Difficulty too low, new difficulty:");
+                Console.WriteLine(this.difficulty);
+            }
+            else if (this.difficulty >= 6)
+            {
+                this.difficulty = 4;
+                Console.WriteLine("Difficulty too high, new difficulty:");
+                Console.WriteLine(this.difficulty);
+            }
+        }
+
 
 
 
