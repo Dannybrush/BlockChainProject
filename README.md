@@ -7,6 +7,8 @@ NOTE:
   
   To Turn on / off Transaction Validation (Key Check + Sufficient Fund Check) change "testtrans" in blockchainApp.cs
   
+  Adaptive Difficulty is enable by default. To change this, comment out the "AdjustDiff()" function in the block constructor.
+  
 This program should be fully functional. If any errors occur, or any questions please send an email @ BR016005@student.reading.ac.uk 
 
 https://csgitlab.reading.ac.uk/br016005/BlockChainProject
