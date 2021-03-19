@@ -21,7 +21,7 @@ namespace BlockchainAssignment
         public string prevHash { get; set; }                                    // A reference pointer to the previous block
         public string merkleRoot { get; set; } = "0";                              // The merkle root of all transactions in the block
         public string minerAddress { get; set; }                                // Public Key (Wallet Address) of the Miner
-        public double reward { get; set; } = 1;                                     // Simple fixed reward established by "Coinbase"
+        public double reward { get; set; } = 100;                                     // Simple fixed reward established by "Coinbase"
 
 // private int nonce = 0;
         public int nonce0 { get; set; } = 0;
@@ -282,34 +282,34 @@ namespace BlockchainAssignment
         public static string MerkleRoot(List<Transaction> transactionList) {
 
             // X => f(X) means given X return f(X)
-            List<String> hashes = transactionList.Select(t => t.Hash).ToList(); // Get a list of transaction hashes for "combining"
+            List<String> hashlist = transactionList.Select(t => t.Hash).ToList(); // Get a list of transaction hashlist for "combining"
             // Handle Blocks with...
-            if (hashes.Count == 0) // No transactions
+            if (hashlist.Count == 0) // No transactions
             {
                 return String.Empty;
             }
-            else if (hashes.Count == 1) // One transaction - hash with "self"
+            else if (hashlist.Count == 1) // One transaction - hash with "self"
             {
-                return HashCode.HashTools.combineHash(hashes[0], hashes[0]);
+                return HashCode.HashTools.combineHash(hashlist[0], hashlist[0]);
             }
-            while (hashes.Count != 1) // Multiple transactions - Repeat until tree has been traversed
+            while (hashlist.Count != 1) // Multiple transactions - Repeat until tree has been traversed
             {
                 List<String> merkleLeaves = new List<String>(); // Keep track of current "level" of the tree
 
-                for (int i = 0; i < hashes.Count; i += 2) // Step over neighbouring pair combining each
+                for (int i = 0; i < hashlist.Count; i += 2) // Step over neighbouring pair combining each
                 {
-                    if (i == hashes.Count - 1)
+                    if (i == hashlist.Count - 1)
                     {
-                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashes[i], hashes[i])); // Handle an odd number of leaves
+                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashlist[i], hashlist[i])); // Handle an odd number of leaves
                     }
                     else
                     {
-                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashes[i], hashes[i + 1])); // Hash neighbours leaves
+                        merkleLeaves.Add(HashCode.HashTools.combineHash(hashlist[i], hashlist[i + 1])); // Hash neighbours leaves
                     }
                 }
-                hashes = merkleLeaves; // Update the working "layer"
+                hashlist = merkleLeaves; // Update the working "layer"
             }
-            return hashes[0]; // Return the root node
+            return hashlist[0]; // Return the root node
         }
 
         // Create reward for incentivising the mining of block

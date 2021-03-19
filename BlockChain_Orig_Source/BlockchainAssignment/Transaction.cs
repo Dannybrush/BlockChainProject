@@ -71,7 +71,7 @@ namespace BlockchainAssignment
                 + "\n\t  Hash: " + this.Hash
                 + "\n\t  Signature: " + this.Signature
                 + "\n  -- Quantities --"
-                + "\n\t  Transferred: " + this.Amount + " Assignment Coin"
+                + "\n\t  Transferred: " + this.Amount + " Energy Drink Induced Crypto Coin"
                 + "\t  Fee: " + this.Fee
                 + "\n  -- Participants --"
                 + "\n\t  Sender: " + this.SenderAddress
@@ -86,7 +86,7 @@ namespace BlockchainAssignment
                 + "\n\t  Hash: " + this.Hash
                 + "\n\t  Signature: " + this.Signature
                 + "\n  -- Quantities --"
-                + "\n\t  Transferred: " + this.Amount + " Assignment Coin"
+                + "\n\t  Transferred: " + this.Amount + " Energy Drink Induced Crypto Coin"
                 + "\t  Fee: " + this.Fee
                 + "\n  -- Participants --"
                 + "\n\t  Sender: " + this.SenderAddress

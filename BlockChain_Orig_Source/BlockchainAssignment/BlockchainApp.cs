@@ -54,9 +54,28 @@ namespace BlockchainAssignment
 
         private void CreateTransBtn_Click(object sender, EventArgs e)
         {
-            Transaction transaction = new Transaction(pubKeyTBox.Text, privKeyTBox.Text, recieverKeyTBox.Text, Convert.ToSingle(amountTBox.Text), Convert.ToSingle(feeTBox.Text));
-            blockchain.add2TPool(transaction);
-            outputToRichTextBox1(transaction.ReturnString());
+            // TURN THIS TO FALSE TO TURN OFF WALLET VERIFICATION
+            bool testtrans = true;
+            if (testtrans)
+            {
+                if ((Wallet.Wallet.ValidatePrivateKey(privKeyTBox.Text, pubKeyTBox.Text)) && (blockchain.GetBalance(pubKeyTBox.Text) > Convert.ToSingle(amountTBox.Text))){
+                    Transaction transaction = new Transaction(pubKeyTBox.Text, privKeyTBox.Text, recieverKeyTBox.Text, Convert.ToSingle(amountTBox.Text), Convert.ToSingle(feeTBox.Text));
+                    blockchain.add2TPool(transaction);
+                    outputToRichTextBox1(transaction.ReturnString());
+                }
+                else
+                {
+                    outputToRichTextBox1("Transaction failed - Check keys match and sufficient funds are available");
+                }
+            }
+            else
+            {
+                Transaction transaction = new Transaction(pubKeyTBox.Text, privKeyTBox.Text, recieverKeyTBox.Text, Convert.ToSingle(amountTBox.Text), Convert.ToSingle(feeTBox.Text));
+                blockchain.add2TPool(transaction);
+                outputToRichTextBox1(transaction.ReturnString());
+
+            }   
+
         }
 
         private void BlockGenBtn_Click(object sender, EventArgs e)
@@ -158,7 +177,7 @@ namespace BlockchainAssignment
         // Check the balance of current user
         private void CheckBalance_Click(object sender, EventArgs e)
         {
-            outputToRichTextBox1(blockchain.GetBalance(pubKeyTBox.Text).ToString() + " Assignment Coin");
+            outputToRichTextBox1(blockchain.GetBalance(pubKeyTBox.Text).ToString() + " Energy Drink Induced Crypto Coin");
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
